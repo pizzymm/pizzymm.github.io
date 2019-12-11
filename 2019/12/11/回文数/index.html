@@ -371,7 +371,7 @@
       <a class='notlink'>
         <i class="fas fa-keyboard" aria-hidden="true"></i>
         <p>字数统计:</p>
-        <p>379字</p>
+        <p>376字</p>
       </a>
     </div>
     <div class="new-meta-item readtime">
@@ -400,7 +400,7 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <h2 id="回文数"><a href="#回文数" class="headerlink" title="回文数"></a>回文数</h2><p>若一个数（首位不为零）从左向右读与从右向左读都一样，我们就将其称之为回文数。</p>
+        <p>若一个数（首位不为零）从左向右读与从右向左读都一样，我们就将其称之为回文数。</p>
 <p>示例 1:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">输入: 121</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">输出: true</span></pre></td></tr></table></figure>
 
@@ -437,7 +437,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-11T10:38:48+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-11T18:55:11+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
     <p>updated at Dec 11, 2019</p>
@@ -546,7 +546,19 @@
 
 
 
-  
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;Comments</h4>
+      
+      
+      
+        <section id="comments">
+          <div id="gitalk-container"></div>
+        </section>
+      
+      
+    </section>
+  </article>
 
 
 
@@ -600,6 +612,14 @@
         
           <a href="https://github.com/pizzymm"
             class="social fab fa-github flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://steamcommunity.com/profiles/76561198872965506/"
+            class="social fab fa-steam flat-btn"
             target="_blank"
             rel="external nofollow noopener noreferrer">
           </a>
@@ -710,6 +730,23 @@
 
 
 
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: "888d5ca627bc3bb04810",
+      clientSecret: "42b762fa3419fd598960d6cb5d846c453e6e36f0",
+      repo: "pizzymm.github.io",
+      owner: "pizzymm",
+      admin: "pizzymm",
+      
+        id: "/wiki/material-x/",
+      
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+    gitalk.render('gitalk-container');
+  </script>
 
 
 
