@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>基于中断循环神经网络的文本分类 | 虫虫特工队</title>
+  
+  
+
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css">
+  
+
+  
+
+  
+    
+<link rel="stylesheet" href="/style.css">
+
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+<meta name="generator" content="Hexo 4.1.0"></head>
+
+<body>
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post half'>
+      
+        
+  <h1 class='title'>张舒萌のblog</h1>
+
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="/"
+            
+            
+            id="home">
+            <i class='fas fa-home fa-fw'></i>&nbsp;主页
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/categories/"
+            
+              rel="nofollow"
+            
+            
+            id="categories">
+            <i class='fas fa-th fa-fw'></i>&nbsp;分类
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/tags/"
+            
+              rel="nofollow"
+            
+            
+            id="tags">
+            <i class='fas fa-tags fa-fw'></i>&nbsp;标签
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/about/"
+            
+              rel="nofollow"
+            
+            
+            id="about">
+            <i class='fas fa-ghost fa-fw'></i>&nbsp;关于
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/friends/"
+            
+              rel="nofollow"
+            
+            
+            id="friends">
+            <i class='fas fa-link fa-fw'></i>&nbsp;友链
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header no_sidebar pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          虫虫特工队
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/categories/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="categories">
+									<i class='fas fa-folder-open fa-fw'></i>&nbsp;分类
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/tags/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="tags">
+									<i class='fas fa-hashtag fa-fw'></i>&nbsp;标签
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/archives/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="archives">
+									<i class='fas fa-archive fa-fw'></i>&nbsp;归档
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/friends/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="friends">
+									<i class='fas fa-link fa-fw'></i>&nbsp;友链
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                
+                id="home">
+								<i class='fas fa-clock fa-fw'></i>&nbsp;近期文章
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="archives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;文章归档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/projects/"
+                
+                
+                id="projects">
+								<i class='fas fa-code-branch fa-fw'></i>&nbsp;开源项目
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/friends/"
+                
+                  rel="nofollow"
+                
+                
+                id="friends">
+								<i class='fas fa-link fa-fw'></i>&nbsp;我的友链
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://xaoxuu.com/wiki/material-x/"
+                
+                  rel="nofollow"
+                
+                
+                id="https:xaoxuu.comwikimaterial-x">
+								<i class='fas fa-book fa-fw'></i>&nbsp;主题文档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/about/"
+                
+                  rel="nofollow"
+                
+                
+                id="about">
+								<i class='fas fa-info-circle fa-fw'></i>&nbsp;关于小站
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main no_sidebar'>
+  
+
+  <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+    
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/2019/12/11/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%EF%BC%9A%E5%9F%BA%E4%BA%8E%E4%B8%AD%E6%96%AD%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/">
+        基于中断循环神经网络的文本分类
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="/http:/yoursite.com" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>Summ张张</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-12-11</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>论文阅读</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item wordcount">
+      <a class='notlink'>
+        <i class="fas fa-keyboard" aria-hidden="true"></i>
+        <p>字数统计:</p>
+        <p>979字</p>
+      </a>
+    </div>
+    <div class="new-meta-item readtime">
+      <a class='notlink'>
+        <i class="fas fa-hourglass-half" aria-hidden="true"></i>
+        <p>阅读时长≈</p>
+        <p>3分</p>
+      </a>
+    </div>
+  
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <h1 id="ACL-2018-：科大讯飞：基于中断循环神经网络的文本分类"><a href="#ACL-2018-：科大讯飞：基于中断循环神经网络的文本分类" class="headerlink" title="ACL 2018 ：科大讯飞：基于中断循环神经网络的文本分类"></a>ACL 2018 ：科大讯飞：基于中断循环神经网络的文本分类</h1><p><a href="https://www.aclweb.org/anthology/P18-1215" target="_blank" rel="noopener">原文:Disconnected Recurrent Neural Networks for Text Categorization</a></p>
+<p>基于中断循环神经网络的文本分类</p>
+<p>科大讯飞北京研究院HFL实验室</p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>文本分类任务是自然语言处理（NLP）领域最基础和传统的任务之一，该任务又会根据领域类型的不同分成很多子任务，例如情感分类、主题分类和问题分类等。很多机器学习的新方法都会先尝试在文本分类任务上进行实验验证。例如深度学习中最常见的两大类模型，卷积神经网络（CNN）和循环神经网络（RNN）及其变体，在文本分类中有很多应用。</p>
+<p>RNN模型擅长对整个句子进行建模，捕捉长距离依赖信息。然而研究表明，RNN对整个句子建模有时会成为一种负担，使模型忽略了关键的短语信息。CNN模型则正相反，更擅长抽取局部的位置不变特征，而不擅长捕捉长距离依赖信息。为此，我们提出了DRNN模型，通过限制RNN模型信息的流动，将位置不变性引入RNN模型中。这使得DRNN模型既能捕捉长距离依赖信息，又可以很好地抽取关键短语信息。我们提出的模型在DBPedia，Yelp等多个文本分类数据集上取得了最好的效果。</p>
+<h2 id="模型介绍"><a href="#模型介绍" class="headerlink" title="模型介绍"></a>模型介绍</h2><p>表1是一个主题分类的例子，我们可以看到两句话表意基本相同，都应该被分类到科技类。其中决定分类的关键短语是“unsolved mysteries of mathematics”，对于一个窗口大小为4的CNN模型来说，两个句子中的该短语表示完全相同。然而，当我们把两句话送入RNN模型的时候，因为RNN模型中，每一个时刻的隐层状态都和前面所有词语相关，所以这两个短语的表示是完全不同的。这增大了模型捕捉关键短语的难度，使得RNN模型有时会忽视一些关键信息。</p>
+<p><img src="http://5b0988e595225.cdn.sohucs.com/images/20180609/794d1ebdc79e47dc81eec2e8db633dbf.jpg" alt="image"></p>
+<p>表格1 主题分类示例</p>
+<p>为了解决上述问题，我们希望通过将位置不变性引入RNN模型中，使得RNN模型既可以捕捉长距离依赖信息，又可以更好地抽取位置不变的局部特征。具体来说，我们会阻断RNN模型的信息流动，使其最多只能传递固定的步长k。这样的话，每个时刻的隐层状态就只和当前词以及前k-1个词相关。</p>
+<p><img src="http://5b0988e595225.cdn.sohucs.com/images/20180609/0e6af5ff646049b3a3ccf6c0a14e98f2.jpg" alt="image"></p>
+<p>图1 Disconnected Recurrent Neural Networks</p>
+<p>图1是RNN模型、DRNN模型和CNN模型的一个对比图。如图所示，对于RNN来说，隐层状态h与前面所有的词都相关，而对于DRNN，则只与当前词及之前的k-1个词相关。DRNN模型也可以被认为是一种特殊的CNN模型，只是将CNN模型中的卷积核替换成了RNN。显然，DRNN和CNN一样，对于长度为k的短语，无论它在文本中的什么位置，都具有相同的表示。DRNN模型t时刻的隐藏层输出可以表示成如下形式：<br><img src="http://5b0988e595225.cdn.sohucs.com/images/20180609/7fca22c694154eaaaaed8527ccb10c6a.jpg" alt="image"></p>
+<p>DRNN是一种通用的模型框架，可以应用在很多任务中，我们主要将其应用在文本分类任务中，对应的模型结构见图2。我们采用GRU作为DRNN的循环单元，得到Disconnected Gated Recurrent Unit（DGRU）模型。我们首先将DGRU的每个隐层表示送入MLP中，来抽取更高层的特征信息。然后再通过Max Pooling来抽取整个文本中最重要的信息，最后再通过一层MLP，然后送入softmax中进行分类。</p>
+
+      </div>
+      
+        <br>
+        <center>如果你喜欢我的内容</center> <img src="/images/wechatpay.png" width="150" height="150" align=center> 
+      
+      
+        <br>
+        
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-11T10:40:08+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>updated at Dec 11, 2019</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>神经网络</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>文本分类</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/12/11/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%EF%BC%9A%E5%9F%BA%E4%BA%8E%E4%B8%AD%E6%96%AD%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/&title=基于中断循环神经网络的文本分类 | 虫虫特工队&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/12/11/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%EF%BC%9A%E5%9F%BA%E4%BA%8E%E4%B8%AD%E6%96%AD%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/&title=基于中断循环神经网络的文本分类 | 虫虫特工队&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class='qrcode' rel="external nofollow noopener noreferrer" href='data:image/png;base64,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'>
+        
+          <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/wechat.png">
+        
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/12/11/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%EF%BC%9A%E5%9F%BA%E4%BA%8E%E4%B8%AD%E6%96%AD%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/&title=基于中断循环神经网络的文本分类 | 虫虫特工队&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+      
+      
+          <div class="prev-next">
+              
+                  <section class="prev">
+                      <span class="art-item-left">
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous</h6>
+                          <h4>
+                              <a href="/2019/12/11/%E5%90%88%E5%B9%B6%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="prev" title="合并二叉树">
+                                
+                                    合并二叉树
+                                
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 二叉树</a> <a class="tag" href="/tags/%E9%93%BE%E8%A1%A8/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 链表</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h4>
+                              <a href="/2019/12/11/%E5%85%B3%E4%BA%8E%E5%8D%B7%E7%A7%AF/" rel="prev" title="关于卷积">
+                                  
+                                      关于卷积
+                                  
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 神经网络</a> <a class="tag" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 机器学习</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+          </div>
+      
+    </section>
+  </article>
+
+
+
+  <!-- 显示推荐文章和评论 -->
+
+
+
+  
+
+
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: '基于中断循环神经网络的文本分类',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+    
+
+  
+</aside>
+
+<footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="/atom.xml"
+            class="social fas fa-rss flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="mailto:smzhang@my.swjtu.edu.cn"
+            class="social fas fa-envelope flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://github.com/pizzymm"
+            class="social fab fa-github flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="http://music.163.com/m/user/home?id=247953475"
+            class="social fas fa-headphones-alt flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+  <div>
+    Use
+    <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a>
+    as theme
+    
+      , 
+      total visits
+      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+      times
+    
+    . 
+  </div>
+</footer>
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        if ('.cover') {
+          $('.cover').backstretch(
+          ["images/background1.jpg"],
+          {
+            duration: "6000",
+            fade: "2500"
+          });
+        } else {
+          $.backstretch(
+          ["images/background1.jpg"],
+          {
+            duration: "6000",
+            fade: "2500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+  
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "Copied";
+  let COPY_FAILURE = "Copy failed";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>
