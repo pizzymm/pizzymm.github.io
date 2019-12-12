@@ -54,7 +54,7 @@
 
   <div class="m_search">
     <form name="searchform" class="form u-search-form">
-      <input type="text" class="input u-search-input" placeholder="" />
+      <input type="text" class="input u-search-input" placeholder="搜索" />
       <i class="icon fas fa-search fa-fw"></i>
     </form>
   </div>
@@ -238,15 +238,6 @@
             </li>
           
             <li>
-							<a class="nav flat-box" href="/projects/"
-                
-                
-                id="projects">
-								<i class='fas fa-code-branch fa-fw'></i>&nbsp;开源项目
-							</a>
-            </li>
-          
-            <li>
 							<a class="nav flat-box" href="/friends/"
                 
                   rel="nofollow"
@@ -403,6 +394,8 @@
         <h1 id="ACL-2018-：科大讯飞：基于中断循环神经网络的文本分类"><a href="#ACL-2018-：科大讯飞：基于中断循环神经网络的文本分类" class="headerlink" title="ACL 2018 ：科大讯飞：基于中断循环神经网络的文本分类"></a>ACL 2018 ：科大讯飞：基于中断循环神经网络的文本分类</h1><p><a href="https://www.aclweb.org/anthology/P18-1215" target="_blank" rel="noopener">原文:Disconnected Recurrent Neural Networks for Text Categorization</a></p>
 <p>基于中断循环神经网络的文本分类</p>
 <p>科大讯飞北京研究院HFL实验室</p>
+<a id="more"></a>
+
 <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>文本分类任务是自然语言处理（NLP）领域最基础和传统的任务之一，该任务又会根据领域类型的不同分成很多子任务，例如情感分类、主题分类和问题分类等。很多机器学习的新方法都会先尝试在文本分类任务上进行实验验证。例如深度学习中最常见的两大类模型，卷积神经网络（CNN）和循环神经网络（RNN）及其变体，在文本分类中有很多应用。</p>
 <p>RNN模型擅长对整个句子进行建模，捕捉长距离依赖信息。然而研究表明，RNN对整个句子建模有时会成为一种负担，使模型忽略了关键的短语信息。CNN模型则正相反，更擅长抽取局部的位置不变特征，而不擅长捕捉长距离依赖信息。为此，我们提出了DRNN模型，通过限制RNN模型信息的流动，将位置不变性引入RNN模型中。这使得DRNN模型既能捕捉长距离依赖信息，又可以很好地抽取关键短语信息。我们提出的模型在DBPedia，Yelp等多个文本分类数据集上取得了最好的效果。</p>
 <h2 id="模型介绍"><a href="#模型介绍" class="headerlink" title="模型介绍"></a>模型介绍</h2><p>表1是一个主题分类的例子，我们可以看到两句话表意基本相同，都应该被分类到科技类。其中决定分类的关键短语是“unsolved mysteries of mathematics”，对于一个窗口大小为4的CNN模型来说，两个句子中的该短语表示完全相同。然而，当我们把两句话送入RNN模型的时候，因为RNN模型中，每一个时刻的隐层状态都和前面所有词语相关，所以这两个短语的表示是完全不同的。这增大了模型捕捉关键短语的难度，使得RNN模型有时会忽视一些关键信息。</p>
@@ -428,10 +421,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-11T19:45:57+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-12T14:23:53+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>updated at Dec 11, 2019</p>
+    <p>updated at Dec 12, 2019</p>
   </a>
 </div>
 
@@ -453,7 +446,9 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/12/11/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%EF%BC%9A%E5%9F%BA%E4%BA%8E%E4%B8%AD%E6%96%AD%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/&title=基于中断循环神经网络的文本分类 | 虫虫特工队&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/12/11/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%EF%BC%9A%E5%9F%BA%E4%BA%8E%E4%B8%AD%E6%96%AD%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/&title=基于中断循环神经网络的文本分类 | 虫虫特工队&summary=ACL 2018 ：科大讯飞：基于中断循环神经网络的文本分类原文:Disconnected Recurrent Neural Networks for Text Categorization
+基于中断循环神经网络的文本分类
+科大讯飞北京研究院HFL实验室"
           
           >
           
@@ -465,7 +460,9 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/12/11/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%EF%BC%9A%E5%9F%BA%E4%BA%8E%E4%B8%AD%E6%96%AD%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/&title=基于中断循环神经网络的文本分类 | 虫虫特工队&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/12/11/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%EF%BC%9A%E5%9F%BA%E4%BA%8E%E4%B8%AD%E6%96%AD%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/&title=基于中断循环神经网络的文本分类 | 虫虫特工队&summary=ACL 2018 ：科大讯飞：基于中断循环神经网络的文本分类原文:Disconnected Recurrent Neural Networks for Text Categorization
+基于中断循环神经网络的文本分类
+科大讯飞北京研究院HFL实验室"
           
           >
           
@@ -485,7 +482,9 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/12/11/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%EF%BC%9A%E5%9F%BA%E4%BA%8E%E4%B8%AD%E6%96%AD%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/&title=基于中断循环神经网络的文本分类 | 虫虫特工队&summary="
+          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/12/11/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%EF%BC%9A%E5%9F%BA%E4%BA%8E%E4%B8%AD%E6%96%AD%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/&title=基于中断循环神经网络的文本分类 | 虫虫特工队&summary=ACL 2018 ：科大讯飞：基于中断循环神经网络的文本分类原文:Disconnected Recurrent Neural Networks for Text Categorization
+基于中断循环神经网络的文本分类
+科大讯飞北京研究院HFL实验室"
           
           >
           
@@ -641,20 +640,24 @@
     </div>
   
   <br>
-  <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
-</div>
+  <!-- <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div> -->
+  <div>Copyright©️2019 pizzy</div>
   <div>
-    Use
+  <!-- <div>  Use
     <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a>
-    as theme
+    as theme -->
     
-      , 
-      total visits
+     <!-- ,  -->
+      <!-- total visits-->
+      访问量
       <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
-      times
+      次
+     <!-- times-->
     
-    . 
-  </div>
+    <!-- .  -->
+    ｜
+  
   <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
   <script>
       var now = new Date();
@@ -667,11 +670,12 @@
           mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
           seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
           snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
-          document.getElementById("timeDate").innerHTML = "The station has been operated safely "+dnum+" 天 ";
+          document.getElementById("timeDate").innerHTML = "本站已安全运行： "+dnum+" 天 ";
           document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
       }
   setInterval("createtime()",250);
   </script>
+  </div>
 </footer>
 <script>setLoadingBarProgress(80);</script>
 
@@ -904,6 +908,9 @@
 
 
 
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas>
+  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  <script type="text/javascript" src="/js/fireworks.js"></script>
   <script>setLoadingBarProgress(100);</script>
 </body>
 </html>
